@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account | Complaint System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+
+    <!-- LEFT: brand panel -->
+    <section class="brand">
+      <h2 class="brand__name">Complaint System</h2>
+
+      <div class="chips">
+  <div class="chip"><span class="chip__id">CMP-2461</span><span class="chip__status t-high">High</span></div>
+  <div class="chip"><span class="chip__id">CMP-2455</span><span class="chip__status  t-closed">Closed</span></div>
+  <div class="chip"><span class="chip__id">CMP-2470</span><span class="chip__status t-assigned">Assigned</span></div>
+  <div class="chip"><span class="chip__id">CMP-2444</span><span class="chip__status t-submitted">Submitted</span></div>
+  <div class="chip"><span class="chip__id">CMP-2468</span><span class="chip__status t-urgent">Urgent</span></div>
+  <div class="chip"><span class="chip__id">CMP-2450</span><span class="chip__status t-closed">Closed</span></div>
+</div>
+
+      
+
+      <p class="brand__tagline">
+        One place for every organization to receive, assign, and resolve complaints  with nothing sitting unanswered.
+      </p>
+    </section>
+
+    <!-- RIGHT: form -->
+    <section class="form-side">
+      <form id="signupForm" class="form" novalidate>
+        <h1>Create your account</h1>
+        <p class="form__sub">Takes less than a minute.</p>
+
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" placeholder="Ali Raza" autocomplete="name">
+          <small class="error" id="fullNameError"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="03xx-xxxxxxx" autocomplete="tel">
+          <small class="error" id="phoneError"></small>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password">
+          <small class="error" id="passwordError"></small>
+        </div>
+
+        <button type="submit" class="btn">Create account</button>
+        <p class="form__message" id="formMessage" role="status"></p>
+        <p class="form__foot">Already have an account? <a href="login.html">Log in</a></p>
+      </form>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

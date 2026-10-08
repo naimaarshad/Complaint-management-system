@@ -1,0 +1,111 @@
+/* ---------- 1. Design tokens (change colours here only) ---------- */
+:root {
+  --green-dark: #223a2f;
+  --green-chip: #2a4539;
+  --green-btn:  #106d5a;
+  --bg-light:   #f4f5f0;
+  --ink:        #14211b;
+  --muted:      #6b766f;
+  --error:      #b3261e;
+  --font: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- 2. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg-light); }
+
+/* ---------- 3. Page layout: two halves ---------- */
+.page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+
+/* ---------- 4. Left brand panel ---------- */
+.brand {
+  background: var(--green-dark);
+  color: #fff;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* name top, chips middle, tagline bottom */
+}
+.brand__name { font-size: 1.1rem; font-weight: 700; }
+.brand__tagline { font-size: 0.85rem; line-height: 1.5; color: #a9b8af; max-width: 42ch; }
+
+.chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.chip {
+  display: flex; gap: 10px; align-items: center;
+  padding: 10px 12px;
+  background: var(--green-chip);
+  border: 1px solid #3a5548;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+.chip__id { color: #8fa397; font-weight: 600; }
+.chip__status {
+  display: inline;         /* behaves like normal text, not a box */
+  padding:  3px 9px;          /* tiny space so the color doesn't touch the letters */
+  border-radius: 5px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.t-urgent    { background: #fbd9d9; color: #9b1c1c; }
+.t-high      { background: #fdebd0; color: #9a5b00; }
+.t-submitted { background: #d6ecfa; color: #14598a; }
+.t-assigned  { background: #e5dcf7; color: #5b3aa0; }
+.t-closed    { background: #d8f0dc; color: #1e6b34; }
+
+
+
+/* ---------- 5. Right form side ---------- */
+.form-side { display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+.form { width: 100%; max-width: 360px; }
+.form h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.form__sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 6px; }
+.field input {
+  width: 100%;
+  padding: 11px 12px;
+  font: inherit; font-size: 0.85rem;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+.field input:focus { outline: 2px solid var(--green-btn); outline-offset: 1px; }
+.field.invalid input { border-color: var(--error); }
+.error { display: block; min-height: 1em; margin-top: 4px; font-size: 0.72rem; color: var(--error); }
+
+.btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  font: inherit; font-size: 0.85rem; font-weight: 700;
+  color: #fff;
+  background: var(--green-btn);
+  border: 0; border-radius: 6px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form__message { margin-top: 12px; font-size: 0.82rem; min-height: 1.2em; }
+.form__message.success { color: var(--green-btn); }
+.form__foot { margin-top: 2px; font-size: 0.82rem; }
+.form__foot a { color: var(--ink); }
+
+/* ---------- 6. Mobile: stack the panels ---------- */
+@media (max-width: 800px) {
+  .page { grid-template-columns: 1fr; 
+   height:90vh;
+   
+} 
+ 
+  .brand { gap: 32px; padding: 28px 20px; }
+  .chips { grid-template-columns: repeat(2, 1fr); }
+}
+ .form-side {
+  background-image: url("assets/images/bg.png");
+  background-size: cover;
+  background-position: center;
+}
