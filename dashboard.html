@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My complaints | Complaint System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div>
+        <h2 class="sidebar__title">Complaint System</h2>
+        <p class="sidebar__org">Riverside General Hospital · Complainant</p>
+
+        <nav class="nav">
+          <a href="dashboard.html" class="nav__link nav__link--active">My complaints</a>
+          <a href="submit-complaint.html" class="nav__link">Submit complaint</a>
+        </nav>
+      </div>
+      <p class="sidebar__foot">v1 prototype</p>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>My complaints</h1>
+          <p class="topbar__sub">Everything you've filed, and where it stands.</p>
+        </div>
+
+        <button class="user" id="userBtn" title="Click to log out">
+          <span class="user__avatar" id="userAvatar">A</span>
+          <span id="userName">Ali Raza</span>
+        </button>
+      </header>
+
+      <!-- STAT CARDS -->
+      <section class="stats">
+        <div class="stat"><strong id="statTotal">0</strong><span>Total filed</span></div>
+        <div class="stat"><strong id="statProgress">0</strong><span>In progress</span></div>
+        <div class="stat"><strong id="statUrgent">0</strong><span>Urgent open</span></div>
+        <div class="stat"><strong id="statClosed">0</strong><span>Closed</span></div>
+      </section>
+
+      <a href="submit-complaint.html" class="btn-primary">+ Submit complaint</a>
+
+      <!-- TABLE -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Subject</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Updated</th>
+            </tr>
+          </thead>
+          <tbody id="complaintRows"></tbody>
+        </table>
+      </div>
+    </main>
+
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>

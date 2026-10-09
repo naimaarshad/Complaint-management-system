@@ -65,3 +65,52 @@ form.addEventListener("submit", (event) => {
 
   setTimeout(() => (window.location.href = "login.html"), 1200);
 });
+
+if (document.getElementById("complaintRows")) {
+
+  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("userName").textContent = user.name;
+    document.getElementById("userAvatar").textContent = user.name.charAt(0).toUpperCase();
+
+    document.getElementById("userBtn").addEventListener("click", () => {
+      if (confirm("Log out?")) {
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+      }
+    });
+
+    const complaints = [
+      { id: "CMP-2461", subject: "Broken AC in Ward 4",              category: "Facilities", priority: "High",   status: "In progress", updated: "2 days ago" },
+      { id: "CMP-2455", subject: "Billing discrepancy",              category: "Finance",    priority: "Medium", status: "Closed",      updated: "1 week ago" },
+      { id: "CMP-2470", subject: "Staff unresponsive at front desk", category: "General",    priority: "Urgent", status: "Assigned",    updated: "5 hours ago" },
+      { id: "CMP-2444", subject: "Request for wheelchair access",    category: "Facilities", priority: "Low",    status: "Submitted",   updated: "3 days ago" },
+      { id: "CMP-2450", subject: "Lab report delay",                 category: "Medical",    priority: "Medium", status: "Closed",      updated: "2 weeks ago" },
+    ];
+
+    const slug = (text) => text.toLowerCase().replace(/\s+/g, "-");
+
+    document.getElementById("complaintRows").innerHTML = complaints.map((c) => `
+      <tr>
+        <td>${c.id}</td>
+        <td>${c.subject}</td>
+        <td>${c.category}</td>
+        <td><span class="badge p-${slug(c.priority)}">${c.priority}</span></td>
+        <td><span class="badge s-${slug(c.status)}">${c.status}</span></td>
+        <td>${c.updated}</td>
+      </tr>
+    `).join("");
+
+    const closed   = complaints.filter((c) => c.status === "Closed").length;
+    const progress = complaints.filter((c) => c.status === "In progress" || c.status === "Assigned").length;
+    const urgent   = complaints.filter((c) => c.priority === "Urgent" && c.status !== "Closed").length;
+
+    document.getElementById("statTotal").textContent = complaints.length;
+    document.getElementById("statProgress").textContent = progress;
+    document.getElementById("statUrgent").textContent = urgent;
+    document.getElementById("statClosed").textContent = closed;
+  }
+}
