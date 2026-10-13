@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Create account | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <main class="page">
@@ -34,6 +38,11 @@
       <form id="signupForm" class="form" novalidate>
         <h1>Create your account</h1>
         <p class="form__sub">Takes less than a minute.</p>
+
+        <div class="role-switch">
+          <a href="register.html" class="active">I'm a complainant</a>
+          <a href="register-org.html">I'm an organization</a>
+        </div>
 
         <div class="field">
           <label for="fullName">Full name</label>
@@ -66,6 +75,7 @@
     </section>
 
   </main>
-  <script src="register.js"></script>
+  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

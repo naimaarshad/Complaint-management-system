@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Log in | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <main class="page">
 
-    <!-- LEFT: brand panel -->
     <section class="brand">
       <h2 class="brand__name"><a href="index.html">Complaint System</a></h2>
 
@@ -23,19 +26,23 @@
       </div>
 
       <p class="brand__tagline">
-        One place for every organization to receive, assign, and resolve complaints  with nothing sitting unanswered.
+        One place for every organization to receive, assign, and resolve complaints with nothing sitting unanswered.
       </p>
     </section>
 
-    <!-- RIGHT: login form -->
     <section class="form-side">
       <form id="loginForm" class="form" novalidate>
-        <h1 class="form__title--green">Log in</h1>
-        <p class="form__sub form__sub--soft">Enter your details to access your dashboard.</p>
+        <h1 class="form__title--green" id="loginTitle">Log in</h1>
+        <p class="form__sub form__sub--soft" id="loginSub">Log in to file and track your complaints.</p>
+
+        <div class="role-switch" id="roleSwitch">
+          <button type="button" data-role="user" class="active">I'm a complainant</button>
+          <button type="button" data-role="org">I'm an organization</button>
+        </div>
 
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@organization.com" autocomplete="email">
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
           <small class="error" id="emailError"></small>
         </div>
 
@@ -47,14 +54,22 @@
 
         <a href="forgot-password.html" class="link-green" id="forgotLink">Forgot password?</a>
 
-        <button type="submit" class="btn">Log in</button>
+        <button type="submit" class="btn" id="loginBtn">Log in</button>
         <p class="form__message" id="formMessage" role="status"></p>
 
-        <p class="form__foot">Don't have an account? <a href="register.html" class="link-green">Register</a></p>
+        <p class="form__foot" id="loginFoot"></p>
+
+        <div class="hint-box">
+          <strong>Demo accounts (prototype only)</strong>
+          Complainant: user@demo.com / password123<br>
+          Organization: org@riverside.com / password123<br>
+          Platform admin: <a href="login.html?role=admin" id="adminLink">log in here</a> (admin@cms.com / admin12345)
+        </div>
       </form>
     </section>
 
   </main>
+  <script src="app.js"></script>
   <script src="login.js"></script>
 </body>
 </html>

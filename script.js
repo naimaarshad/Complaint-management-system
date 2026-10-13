@@ -1,4 +1,4 @@
-
+// ---------- 1. Grab the elements ----------
 const form = document.getElementById("signupForm");
 const message = document.getElementById("formMessage");
 
@@ -9,6 +9,7 @@ const fields = {
   password: document.getElementById("password"),
 };
 
+// ---------- 2. Validation rules: each returns "" if OK, or an error text ----------
 const rules = {
   fullName: (v) => (v.trim().length < 3 ? "Enter your full name." : ""),
   email:    (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Enter a valid email address."),
@@ -16,7 +17,7 @@ const rules = {
   password: (v) => (v.length < 8 ? "Use at least 8 characters." : ""),
 };
 
-
+// ---------- 3. Show / clear an error on one field ----------
 function validateField(name) {
   const input = fields[name];
   const error = rules[name](input.value);
@@ -25,18 +26,20 @@ function validateField(name) {
   return error === "";
 }
 
+// Re-check a field as soon as the user leaves it
 Object.keys(fields).forEach((name) => {
   fields[name].addEventListener("blur", () => validateField(name));
 });
 
+// ---------- 4. Handle submit ----------
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); 
+  event.preventDefault(); // stop the page from reloading
 
-  
+  // Check every field (don't stop at the first bad one)
   const allValid = Object.keys(fields).map(validateField).every(Boolean);
   if (!allValid) return;
 
-  
+  // Save the user (browser only, for practice. A real app sends this to a server.)
   const users = JSON.parse(localStorage.getItem("users") || "[]");
   const email = fields.email.value.trim().toLowerCase();
 
@@ -51,7 +54,8 @@ form.addEventListener("submit", (event) => {
     name: fields.fullName.value.trim(),
     email,
     phone: fields.phone.value.trim(),
-    password: fields.password.value, 
+    password: fields.password.value, // NEVER store plain passwords in a real app
+    role: "user",
   });
   localStorage.setItem("users", JSON.stringify(users));
 

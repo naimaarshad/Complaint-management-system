@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <div class="nav">
     <div class="logo">Complaint System</div>
     <div class="links">
       <a href="login.html">Log in</a>
-      <a class="btn-primary" href="register.html">Register your organization</a>
+      <a class="btn-primary" href="register-org.html">Register your organization</a>
     </div>
   </div>
 
@@ -22,8 +23,8 @@
     <h1>Every complaint, tracked from the moment it's filed to the moment it's closed.</h1>
     <p>One platform for any organization to receive, assign, resolve, and report on complaints — with built-in escalation so nothing sits unanswered.</p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="register.html">Register your organization</a>
-      <a class="btn-secondary" href="login.html">Log in</a>
+      <a class="btn-primary" href="register-org.html">Register your organization</a>
+      <a class="btn-secondary" href="login.html">File a complaint</a>
     </div>
 
     <div class="stub-strip" aria-hidden="true">
@@ -39,19 +40,42 @@
     <p class="lead">From submission to closure, every role sees exactly what they need.</p>
     <div class="feature-grid">
       <div class="feature-card">
-        <div class="ico"></div>
+        <div class="ico">🏢</div>
         <h3>Multi-organization</h3>
         <p>Each organization gets its own users, categories, departments, and SLA rules — fully isolated from every other org on the platform.</p>
       </div>
       <div class="feature-card">
-        <div class="ico"></div>
+        <div class="ico">🔁</div>
         <h3>Role-based workflow</h3>
         <p>Focal persons assign, handlers respond, supervisors review and close — each with their own dashboard and permissions.</p>
       </div>
       <div class="feature-card">
-        <div class="ico"></div>
+        <div class="ico">⏱</div>
         <h3>Automatic escalation</h3>
         <p>SLA timers per priority mean an ignored complaint raises itself in priority and alerts the right person, automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="get-started">
+    <h2>Choose how you want to use it</h2>
+    <p class="lead">Whether you have a complaint or receive them, there is a way in.</p>
+    <div class="role-grid">
+      <div class="role-card">
+        <h3>I have a complaint</h3>
+        <p>Pick the organization, describe the problem, and follow it from submission to resolution. You can rate how it was handled once it is closed.</p>
+        <div class="role-links">
+          <a class="btn-primary" href="login.html">Log in to file a complaint</a>
+          <a class="btn-secondary" href="register.html">Create an account</a>
+        </div>
+      </div>
+      <div class="role-card">
+        <h3>I represent an organization</h3>
+        <p>Register your hospital, university, office or company. Once approved, you receive complaints, set priorities, respond, and close them.</p>
+        <div class="role-links">
+          <a class="btn-primary" href="register-org.html">Register your organization</a>
+          <a class="btn-secondary" href="login.html?role=org">Organization log in</a>
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +83,7 @@
   <div class="cta-band">
     <h2>Ready to get your organization set up?</h2>
     <p>Approval usually takes under 2 business days.</p>
-    <a class="btn-primary" href="register.html">Register your organization</a>
+    <a class="btn-primary" href="register-org.html">Register your organization</a>
   </div>
 
 </body>
