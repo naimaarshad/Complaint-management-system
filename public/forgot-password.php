@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/../src/bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 
     <!-- LEFT: brand panel -->
     <section class="brand">
-      <h2 class="brand__name"><a href="index.html">Complaint System</a></h2>
+      <h2 class="brand__name"><a href="index.php">Complaint System</a></h2>
 
       <div class="chips">
         <div class="chip"><span class="chip__id">CMP-2461</span><span class="chip__status t-high">High</span></div>
@@ -42,7 +43,7 @@
         <button type="submit" class="btn">Send reset link</button>
         <p class="form__message" id="formMessage" role="status"></p>
 
-        <p class="form__foot"><a href="login.html">Back to log in</a></p>
+        <p class="form__foot"><a href="login.php">Back to log in</a></p>
       </form>
     </section>
 

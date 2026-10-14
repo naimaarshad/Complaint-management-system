@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/../src/bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,8 @@
   <div class="nav">
     <div class="logo">Complaint System</div>
     <div class="links">
-      <a href="login.html">Log in</a>
-      <a class="btn-primary" href="register-org.html">Register your organization</a>
+      <a href="login.php">Log in</a>
+      <a class="btn-primary" href="register-org.php">Register your organization</a>
     </div>
   </div>
 
@@ -23,8 +24,8 @@
     <h1>Every complaint, tracked from the moment it's filed to the moment it's closed.</h1>
     <p>One platform for any organization to receive, assign, resolve, and report on complaints — with built-in escalation so nothing sits unanswered.</p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="register-org.html">Register your organization</a>
-      <a class="btn-secondary" href="login.html">File a complaint</a>
+      <a class="btn-primary" href="register-org.php">Register your organization</a>
+      <a class="btn-secondary" href="login.php">File a complaint</a>
     </div>
 
     <div class="stub-strip" aria-hidden="true">
@@ -65,16 +66,16 @@
         <h3>I have a complaint</h3>
         <p>Pick the organization, describe the problem, and follow it from submission to resolution. You can rate how it was handled once it is closed.</p>
         <div class="role-links">
-          <a class="btn-primary" href="login.html">Log in to file a complaint</a>
-          <a class="btn-secondary" href="register.html">Create an account</a>
+          <a class="btn-primary" href="login.php">Log in to file a complaint</a>
+          <a class="btn-secondary" href="register.php">Create an account</a>
         </div>
       </div>
       <div class="role-card">
         <h3>I represent an organization</h3>
         <p>Register your hospital, university, office or company. Once approved, you receive complaints, set priorities, respond, and close them.</p>
         <div class="role-links">
-          <a class="btn-primary" href="register-org.html">Register your organization</a>
-          <a class="btn-secondary" href="login.html?role=org">Organization log in</a>
+          <a class="btn-primary" href="register-org.php">Register your organization</a>
+          <a class="btn-secondary" href="login.php?role=org">Organization log in</a>
         </div>
       </div>
     </div>
@@ -83,7 +84,7 @@
   <div class="cta-band">
     <h2>Ready to get your organization set up?</h2>
     <p>Approval usually takes under 2 business days.</p>
-    <a class="btn-primary" href="register-org.html">Register your organization</a>
+    <a class="btn-primary" href="register-org.php">Register your organization</a>
   </div>
 
 </body>

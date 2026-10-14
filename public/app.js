@@ -232,11 +232,11 @@
 
   function logout() {
     localStorage.removeItem(KEYS.session);
-    window.location.href = "index.html";
+    window.location.href = "index.php";
   }
 
   function homeFor(s) {
-    if (!s) return "login.html";
+    if (!s) return "login.php";
     if (s.role === "admin") return "admin-approvals.html";
     if (s.role === "org") return s.orgId ? "org-dashboard.html" : "org-pending.html";
     return "select-org.html";
@@ -245,7 +245,7 @@
   function requireRole(roles) {
     var s = session();
     if (!s) {
-      window.location.replace("login.html?role=" + roles[0]);
+      window.location.replace("login.php?role=" + roles[0]);
       return null;
     }
     if (roles.indexOf(s.role) === -1) {
@@ -327,7 +327,7 @@
       .join("");
 
     sidebar.innerHTML =
-      '<a class="brand-link" href="index.html">Complaint System</a>' +
+      '<a class="brand-link" href="index.php">Complaint System</a>' +
       '<div class="role-tag">' + esc(ROLE_LABEL[s.role] || "") + "</div>" +
       "<nav>" + links + "</nav>" +
       '<div class="sidebar-foot"><a href="#" id="logoutLink">Log out</a></div>';

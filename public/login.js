@@ -8,19 +8,19 @@ var copy = {
     title: "Log in",
     sub: "Log in to file and track your complaints.",
     button: "Log in",
-    foot: 'Don\'t have an account? <a href="register.html" class="link-green">Register</a>',
+    foot: 'Don\'t have an account? <a href="register.php" class="link-green">Register</a>',
   },
   org: {
     title: "Organization log in",
     sub: "Log in to manage the complaints your organization receives.",
     button: "Log in as organization",
-    foot: 'New organization? <a href="register-org.html" class="link-green">Register your organization</a>',
+    foot: 'New organization? <a href="register-org.php" class="link-green">Register your organization</a>',
   },
   admin: {
     title: "Platform admin",
     sub: "Review and approve organization registrations.",
     button: "Log in as admin",
-    foot: '<a href="login.html" class="link-green">Back to normal log in</a>',
+    foot: '<a href="login.php" class="link-green">Back to normal log in</a>',
   },
 };
 
@@ -49,7 +49,7 @@ function setRole(next) {
     b.classList.toggle("active", b.getAttribute("data-role") === role);
   });
   message.textContent = "";
-  var url = role === "user" ? "login.html" : "login.html?role=" + role;
+  var url = role === "user" ? "login.php" : "login.php?role=" + role;
   history.replaceState(null, "", url);
 }
 

@@ -64,5 +64,5 @@ form.addEventListener("submit", (event) => {
   message.textContent = "Account created. Redirecting to login…";
   form.querySelector(".btn").disabled = true;
 
-  setTimeout(() => (window.location.href = "login.html"), 1200);
+  setTimeout(() => (window.location.href = "login.php"), 1200);
 });

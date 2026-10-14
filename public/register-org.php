@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/../src/bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
   <main class="page">
 
     <section class="brand">
-      <h2 class="brand__name"><a href="index.html">Complaint System</a></h2>
+      <h2 class="brand__name"><a href="index.php">Complaint System</a></h2>
 
       <div class="chips">
         <div class="chip"><span class="chip__id">CMP-2461</span><span class="chip__status t-high">High</span></div>
@@ -36,8 +37,8 @@
         <p class="form__sub">We review every organization before it can receive complaints. Approval usually takes under 2 business days.</p>
 
         <div class="role-switch">
-          <a href="register.html">I'm a complainant</a>
-          <a href="register-org.html" class="active">I'm an organization</a>
+          <a href="register.php">I'm a complainant</a>
+          <a href="register-org.php" class="active">I'm an organization</a>
         </div>
 
         <div class="field">
@@ -101,7 +102,7 @@
 
         <button type="submit" class="btn">Submit for approval</button>
         <p class="form__message" id="formMessage" role="status"></p>
-        <p class="form__foot">Already registered? <a href="login.html?role=org">Log in</a></p>
+        <p class="form__foot">Already registered? <a href="login.php?role=org">Log in</a></p>
       </form>
     </section>
 

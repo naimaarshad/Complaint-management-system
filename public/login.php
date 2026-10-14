@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/../src/bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
   <main class="page">
 
     <section class="brand">
-      <h2 class="brand__name"><a href="index.html">Complaint System</a></h2>
+      <h2 class="brand__name"><a href="index.php">Complaint System</a></h2>
 
       <div class="chips">
         <div class="chip"><span class="chip__id">CMP-2461</span><span class="chip__status t-high">High</span></div>
@@ -52,7 +53,7 @@
           <small class="error" id="passwordError"></small>
         </div>
 
-        <a href="forgot-password.html" class="link-green" id="forgotLink">Forgot password?</a>
+        <a href="forgot-password.php" class="link-green" id="forgotLink">Forgot password?</a>
 
         <button type="submit" class="btn" id="loginBtn">Log in</button>
         <p class="form__message" id="formMessage" role="status"></p>
@@ -63,7 +64,7 @@
           <strong>Demo accounts (prototype only)</strong>
           Complainant: user@demo.com / password123<br>
           Organization: org@riverside.com / password123<br>
-          Platform admin: <a href="login.html?role=admin" id="adminLink">log in here</a> (admin@cms.com / admin12345)
+          Platform admin: <a href="login.php?role=admin" id="adminLink">log in here</a> (admin@cms.com / admin12345)
         </div>
       </form>
     </section>
