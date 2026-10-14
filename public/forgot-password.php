@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/../src/bootstrap.php'; ?>
+<?php require __DIR__ . "/../src/bootstrap.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reset password | Complaint System</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .home-btn {
+      position: absolute;
+      top: 18px;
+      right: auto;
+      box-shadow: none;
+      transform: none;
+      left: 24px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px 9px 14px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 8px;
+      background: #106d5a;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .home-btn::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3 2 12h3v8h5v-5h4v5h5v-8h3L12 3z'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3 2 12h3v8h5v-5h4v5h5v-8h3L12 3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .home-btn:hover {
+      background: #138a72;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+    .brand,
+    .brand-panel {
+      padding-top: 88px;
+    }
+    @media (max-width: 700px) {
+      .home-btn {
+        top: 14px;
+        left: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <a class="home-btn" href="index.php">Home</a>
   <main class="page">
 
     <!-- LEFT: brand panel -->

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File a complaint | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1 class="page-title">File a complaint</h1>
+          <p class="page-sub">Tell the organization what went wrong. You can follow progress from My complaints.</p>
+        </div>
+        <div class="user-chip" id="userChip"></div>
+      </div>
+
+      <form id="complaintForm" class="app-form card" novalidate style="max-width: 640px;">
+        <div class="field">
+          <label>Organization</label>
+          <div class="readonly-box">
+            <span id="orgName"></span>
+            <a href="select-org.html">Change</a>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category"></select>
+          <small class="error" id="categoryError"></small>
+        </div>
+
+        <div class="field">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="A short summary of the problem" maxlength="120">
+          <small class="error" id="subjectError"></small>
+        </div>
+
+        <div class="field">
+          <label for="description">What happened?</label>
+          <textarea id="description" placeholder="Include dates, names of departments or staff, and anything you already tried."></textarea>
+          <small class="error" id="descriptionError"></small>
+        </div>
+
+        <div class="field">
+          <label for="attachment">Attachment (optional)</label>
+          <label class="upload-box" for="attachment" id="attachLabel">Click to attach a photo or document
+            <input type="file" id="attachment">
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">Submit complaint</button>
+        <p class="form__message" id="formMessage" role="status"></p>
+      </form>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script src="file-complaint.js"></script>
+</body>
+</html>

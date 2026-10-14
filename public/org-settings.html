@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-sub">Your organization profile and the complaint categories people can choose from.</p>
+        </div>
+        <div class="user-chip" id="userChip"></div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="card">
+          <h3>Complaint categories</h3>
+          <p>People pick one of these when they file a complaint with you. Changes apply straight away.</p>
+
+          <ul class="cat-list" id="catList"></ul>
+
+          <form class="app-form" id="catForm" novalidate>
+            <div class="field">
+              <label for="catName">Add a category</label>
+              <input type="text" id="catName" placeholder="e.g. Parking" maxlength="40">
+              <small class="error" id="catNameError"></small>
+            </div>
+            <button type="submit" class="btn-primary">Add category</button>
+            <p class="form__message" id="catMessage" role="status"></p>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Organization profile</h3>
+          <dl class="meta-list" id="profile"></dl>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script src="org-settings.js"></script>
+</body>
+</html>

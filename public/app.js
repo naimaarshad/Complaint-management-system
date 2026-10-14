@@ -302,14 +302,19 @@
 
   var NAV = {
     user: [
+      ["index.php", "Home"],
       ["my-complaints.html", "My complaints"],
       ["select-org.html", "File a complaint"],
     ],
     org: [
+      ["index.php", "Home"],
       ["org-dashboard.html", "Dashboard"],
       ["org-settings.html", "Settings"],
     ],
-    admin: [["admin-approvals.html", "Organization approvals"]],
+    admin: [
+      ["index.php", "Home"],
+      ["admin-approvals.html", "Organization approvals"],
+    ],
   };
 
   var ROLE_LABEL = { user: "Complainant", org: "Organization", admin: "Platform admin" };

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complaint | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <a class="back-link" id="backLink" href="my-complaints.html">&larr; Back</a>
+      <div class="topbar">
+        <div>
+          <h1 class="page-title" id="pageTitle">Complaint</h1>
+          <p class="page-sub" id="pageSub"></p>
+        </div>
+        <div class="user-chip" id="userChip"></div>
+      </div>
+
+      <div id="notice"></div>
+
+      <div id="detailRoot" class="detail-grid">
+        <div>
+          <div class="card">
+            <h3 id="dSubject"></h3>
+            <p id="dDescription"></p>
+          </div>
+
+          <div class="card">
+            <h3>Progress</h3>
+            <ul class="timeline" id="timeline"></ul>
+          </div>
+
+          <div class="card" id="orgActions" style="display: none;">
+            <h3>Update this complaint</h3>
+            <form id="updateForm" class="app-form" novalidate>
+              <div class="field">
+                <label for="uStatus">Status</label>
+                <select id="uStatus"></select>
+              </div>
+              <div class="field">
+                <label for="uPriority">Priority</label>
+                <select id="uPriority"></select>
+              </div>
+              <div class="field">
+                <label for="uMessage">Message to the complainant</label>
+                <textarea id="uMessage" placeholder="Explain what has been done or what happens next." style="min-height: 90px;"></textarea>
+              </div>
+              <button type="submit" class="btn-primary">Save update</button>
+              <p class="form__message" id="updateMessage" role="status"></p>
+            </form>
+          </div>
+
+          <div class="card" id="feedbackCard" style="display: none;">
+            <h3>How was the resolution?</h3>
+            <div id="feedbackBody"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Details</h3>
+          <dl class="meta-list" id="meta"></dl>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script src="complaint-detail.js"></script>
+</body>
+</html>

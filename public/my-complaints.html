@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My complaints | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1 class="page-title">My complaints</h1>
+          <p class="page-sub">Track everything you have filed, across all organizations.</p>
+        </div>
+        <div class="user-chip" id="userChip"></div>
+      </div>
+
+      <div class="stat-grid" id="stats"></div>
+
+      <div class="filters">
+        <input type="text" id="search" placeholder="Search by ID or subject">
+        <select id="statusFilter">
+          <option value="">All statuses</option>
+          <option>Submitted</option>
+          <option>Assigned</option>
+          <option>In Progress</option>
+          <option>Resolved</option>
+          <option>Closed</option>
+        </select>
+        <a class="btn-primary" href="select-org.html">File a complaint</a>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Subject</th><th>Organization</th><th>Priority</th><th>Status</th><th>Filed on</th></tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script src="my-complaints.js"></script>
+</body>
+</html>

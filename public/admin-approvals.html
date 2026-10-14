@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organization approvals | Complaint System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1 class="page-title" id="pageTitle">Organization approvals</h1>
+          <p class="page-sub" id="pageSub">Review organizations that asked to join before they can receive complaints.</p>
+        </div>
+        <div class="user-chip" id="userChip"></div>
+      </div>
+
+      <div class="stat-grid" id="stats"></div>
+
+      <h2 class="section-heading">Waiting for review</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Organization</th><th>Sector</th><th>City</th><th>Contact</th><th>Document</th><th>Submitted</th><th>Decision</th></tr>
+          </thead>
+          <tbody id="pendingRows"></tbody>
+        </table>
+      </div>
+
+      <h2 class="section-heading">Already reviewed</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Organization</th><th>Sector</th><th>City</th><th>Contact</th><th>Submitted</th><th>Result</th></tr>
+          </thead>
+          <tbody id="doneRows"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script src="admin-approvals.js"></script>
+</body>
+</html>
