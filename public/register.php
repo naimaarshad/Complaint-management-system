@@ -1,4 +1,75 @@
-<?php require __DIR__ . "/../src/bootstrap.php"; ?>
+<?php
+require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../src/mailer.php';
+require __DIR__ . '/../src/otp.php';
+
+$errors = [];
+$old = ['name' => '', 'email' => '', 'phone' => ''];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_check();
+
+    $old['name']  = trim((string) ($_POST['name'] ?? ''));
+    $old['email'] = strtolower(trim((string) ($_POST['email'] ?? '')));
+    $old['phone'] = trim((string) ($_POST['phone'] ?? ''));
+    $password     = (string) ($_POST['password'] ?? '');
+
+    if (mb_strlen($old['name']) < 3 || mb_strlen($old['name']) > 120) {
+        $errors['name'] = 'Enter your full name.';
+    }
+    if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL) || strlen($old['email']) > 190) {
+        $errors['email'] = 'Enter a valid email address.';
+    }
+    if (!preg_match('/^03\d{2}-?\d{7}$/', $old['phone'])) {
+        $errors['phone'] = 'Use the format 03xx-xxxxxxx.';
+    }
+    if (strlen($password) < 8) {
+        $errors['password'] = 'Use at least 8 characters.';
+    } elseif (strlen($password) > 72) {
+        $errors['password'] = 'Use at most 72 characters.';
+    }
+
+    if (!$errors) {
+        $pdo = db();
+        $stmt = $pdo->prepare('SELECT id, role, email_verified_at FROM users WHERE email = ?');
+        $stmt->execute([$old['email']]);
+        $existing = $stmt->fetch();
+
+        if ($existing && ($existing['email_verified_at'] !== null || $existing['role'] !== 'complainant')) {
+            $errors['email'] = 'An account with this email already exists. Log in instead.';
+        } else {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+
+            if ($existing) {
+                $pdo->prepare('UPDATE users SET name = ?, phone = ?, password_hash = ? WHERE id = ?')
+                    ->execute([$old['name'], $old['phone'], $hash, $existing['id']]);
+                $userId = (int) $existing['id'];
+            } else {
+                $pdo->prepare('INSERT INTO users (name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?)')
+                    ->execute([$old['name'], $old['email'], $old['phone'], $hash, 'complainant']);
+                $userId = (int) $pdo->lastInsertId();
+            }
+
+            $code = otp_issue($userId, 'verify_email');
+            if ($code !== null) {
+                send_mail(
+                    $old['email'],
+                    'Your Complaint System verification code',
+                    "Hello {$old['name']},\n\nYour verification code is: $code\n\nIt expires in 10 minutes. If you did not create an account, ignore this email."
+                );
+            }
+
+            $_SESSION['verify_user_id'] = $userId;
+            redirect('verify-email.php');
+        }
+    }
+}
+
+function field_class(array $errors, string $key): string
+{
+    return isset($errors[$key]) ? 'field invalid' : 'field';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +156,8 @@
 
     <!-- RIGHT: form -->
     <section class="form-side">
-      <form id="signupForm" class="form" novalidate>
+      <form id="signupForm" class="form" method="post" action="register.php" novalidate>
+        <?= csrf_field() ?>
         <h1>Create your account</h1>
         <p class="form__sub">Takes less than a minute.</p>
 
@@ -94,38 +166,35 @@
           <a href="register-org.php">I'm an organization</a>
         </div>
 
-        <div class="field">
+        <div class="<?= field_class($errors, 'name') ?>">
           <label for="fullName">Full name</label>
-          <input type="text" id="fullName" placeholder="Ali Raza" autocomplete="name">
-          <small class="error" id="fullNameError"></small>
+          <input type="text" id="fullName" name="name" value="<?= e($old['name']) ?>" placeholder="Ali Raza" autocomplete="name" required>
+          <small class="error" id="fullNameError"><?= e($errors['name'] ?? '') ?></small>
         </div>
 
-        <div class="field">
+        <div class="<?= field_class($errors, 'email') ?>">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-          <small class="error" id="emailError"></small>
+          <input type="email" id="email" name="email" value="<?= e($old['email']) ?>" placeholder="you@example.com" autocomplete="email" required>
+          <small class="error" id="emailError"><?= e($errors['email'] ?? '') ?></small>
         </div>
 
-        <div class="field">
+        <div class="<?= field_class($errors, 'phone') ?>">
           <label for="phone">Phone</label>
-          <input type="tel" id="phone" placeholder="03xx-xxxxxxx" autocomplete="tel">
-          <small class="error" id="phoneError"></small>
+          <input type="tel" id="phone" name="phone" value="<?= e($old['phone']) ?>" placeholder="03xx-xxxxxxx" autocomplete="tel" required>
+          <small class="error" id="phoneError"><?= e($errors['phone'] ?? '') ?></small>
         </div>
 
-        <div class="field">
+        <div class="<?= field_class($errors, 'password') ?>">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password">
-          <small class="error" id="passwordError"></small>
+          <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required>
+          <small class="error" id="passwordError"><?= e($errors['password'] ?? '') ?></small>
         </div>
 
         <button type="submit" class="btn">Create account</button>
-        <p class="form__message" id="formMessage" role="status"></p>
         <p class="form__foot">Already have an account? <a href="login.php">Log in</a></p>
       </form>
     </section>
 
   </main>
-  <script src="app.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>

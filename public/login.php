@@ -1,4 +1,61 @@
-<?php require __DIR__ . "/../src/bootstrap.php"; ?>
+<?php
+require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../src/mailer.php';
+require __DIR__ . '/../src/otp.php';
+require __DIR__ . '/../src/auth.php';
+
+if (current_user() !== null) {
+    redirect('login-done.php');
+}
+
+$error = '';
+$email = '';
+$success = flash('success');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_check();
+
+    $email    = strtolower(trim((string) ($_POST['email'] ?? '')));
+    $password = (string) ($_POST['password'] ?? '');
+    $ip       = client_ip();
+
+    if ($email === '' || $password === '') {
+        $error = 'Enter your email and password.';
+    } elseif (login_is_locked($email, $ip)) {
+        $error = 'Too many failed attempts. Try again in 15 minutes.';
+    } else {
+        $stmt = db()->prepare('SELECT id, org_id, name, email, password_hash, role, is_active, email_verified_at FROM users WHERE email = ?');
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        $passwordOk = password_verify($password, $user['password_hash'] ?? DUMMY_HASH);
+
+        if (!$user || !$passwordOk || !(int) $user['is_active']) {
+            login_record($email, $ip, false);
+            $error = 'Incorrect email or password.';
+        } else {
+            login_record($email, $ip, true);
+            $userId = (int) $user['id'];
+
+            if ($user['email_verified_at'] === null) {
+                $code = otp_issue($userId, 'verify_email');
+                if ($code !== null) {
+                    send_mail($user['email'], 'Your Complaint System verification code', "Hello {$user['name']},\n\nYour verification code is: $code\n\nIt expires in 10 minutes.");
+                }
+                $_SESSION['verify_user_id'] = $userId;
+                redirect('verify-email.php');
+            }
+
+            $code = otp_issue($userId, 'login');
+            if ($code !== null) {
+                send_mail($user['email'], 'Your Complaint System login code', "Hello {$user['name']},\n\nYour login code is: $code\n\nIt expires in 10 minutes. If this was not you, change your password.");
+            }
+            $_SESSION['login_user_id'] = $userId;
+            redirect('login-otp.php');
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,45 +138,35 @@
     </section>
 
     <section class="form-side">
-      <form id="loginForm" class="form" novalidate>
-        <h1 class="form__title--green" id="loginTitle">Log in</h1>
-        <p class="form__sub form__sub--soft" id="loginSub">Log in to file and track your complaints.</p>
+      <form id="loginForm" class="form" method="post" action="login.php" novalidate>
+        <?= csrf_field() ?>
+        <h1 class="form__title--green">Log in</h1>
+        <p class="form__sub form__sub--soft">Complainants, organizations and platform admins all log in here.</p>
 
-        <div class="role-switch" id="roleSwitch">
-          <button type="button" data-role="user" class="active">I'm a complainant</button>
-          <button type="button" data-role="org">I'm an organization</button>
-        </div>
+        <?php if ($success): ?>
+          <p class="form__message success" role="status"><?= e($success) ?></p>
+        <?php endif; ?>
 
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-          <small class="error" id="emailError"></small>
+          <input type="email" id="email" name="email" value="<?= e($email) ?>" placeholder="you@example.com" autocomplete="email" required>
         </div>
 
-        <div class="field">
+        <div class="<?= $error !== '' ? 'field invalid' : 'field' ?>">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Your password" autocomplete="current-password">
-          <small class="error" id="passwordError"></small>
+          <input type="password" id="password" name="password" placeholder="Your password" autocomplete="current-password" required>
+          <small class="error"><?= e($error) ?></small>
         </div>
 
-        <a href="forgot-password.php" class="link-green" id="forgotLink">Forgot password?</a>
+        <a href="forgot-password.php" class="link-green">Forgot password?</a>
 
-        <button type="submit" class="btn" id="loginBtn">Log in</button>
-        <p class="form__message" id="formMessage" role="status"></p>
+        <button type="submit" class="btn">Log in</button>
 
-        <p class="form__foot" id="loginFoot"></p>
-
-        <div class="hint-box">
-          <strong>Demo accounts (prototype only)</strong>
-          Complainant: user@demo.com / password123<br>
-          Organization: org@riverside.com / password123<br>
-          Platform admin: <a href="login.php?role=admin" id="adminLink">log in here</a> (admin@cms.com / admin12345)
-        </div>
+        <p class="form__foot">Don't have an account? <a href="register.php" class="link-green">Register</a></p>
+        <p class="form__foot">New organization? <a href="register-org.php" class="link-green">Register your organization</a></p>
       </form>
     </section>
 
   </main>
-  <script src="app.js"></script>
-  <script src="login.js"></script>
 </body>
 </html>

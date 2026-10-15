@@ -1,0 +1,19 @@
+[2026-10-15 04:37:22 UTC] Mail server said 534 to "password": 534-5.7.9 Please log in with your web browser and then try again. For more
+534-5.7.9 information, go to
+534 5.7.9  https://support.google.com/mail/?p=WebLoginRequired ffacd0b85a97d-48de0ab5b03sm16946804f8f.30 - gsmtp
+[2026-10-15 04:39:05 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-48de0ab6361sm13514194f8f.32 - gsmtp
+[2026-10-15 04:56:19 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4a1bdbace19sm41289565e9.14 - gsmtp
+[2026-10-15 04:57:51 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-48de70079e7sm11046132f8f.11 - gsmtp
+[2026-10-15 04:59:33 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4a1bd6428b3sm38694035e9.1 - gsmtp
+[2026-10-15 05:10:26 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-48de3f7f8b8sm15262523f8f.35 - gsmtp
+[2026-10-15 05:13:10 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-48df7bf4642sm413703f8f.10 - gsmtp
+[2026-10-15 05:13:52 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4a1bd96f9a0sm41224125e9.1 - gsmtp
+[2026-10-15 05:14:32 UTC] Mail server said 535 to "password": 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4a1bd97349esm42065465e9.3 - gsmtp

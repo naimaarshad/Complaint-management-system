@@ -232,7 +232,7 @@
 
   function logout() {
     localStorage.removeItem(KEYS.session);
-    window.location.href = "index.php";
+    window.location.href = "logout.php";
   }
 
   function homeFor(s) {
@@ -376,4 +376,4 @@
     param: param,
     mountShell: mountShell,
   };
-})();
+}) ();
