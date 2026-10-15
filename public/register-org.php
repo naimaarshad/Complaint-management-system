@@ -156,7 +156,7 @@
     </section>
 
   </main>
-  <script src="app.js"></script>
-  <script src="register-org.js"></script>
+  <script src="app.js?v=2"></script>
+  <script src="register-org.js?v=3"></script>
 </body>
 </html>

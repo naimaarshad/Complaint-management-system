@@ -97,6 +97,6 @@
     </section>
 
   </main>
-  <script src="forgot.js"></script>
+  <script src="forgot.js?v=3"></script>
 </body>
 </html>
